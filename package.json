@@ -26,7 +26,7 @@
     "dev": "cross-env ENVIRONMENT=development cross-env BUILD_TARGET=website nuxt dev",
     "generate": "cross-env ENVIRONMENT=development cross-env BUILD_TARGET=website nuxt generate",
     "preview": "cross-env ENVIRONMENT=development cross-env BUILD_TARGET=website nuxt preview",
-    "postinstall": "cross-env ENVIRONMENT=development cross-env BUILD_TARGET=website nuxt prepare"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxt/eslint": "1.7.1",
