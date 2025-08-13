@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "xyz.yukae.chixirra",
+  "productName": "yukae",
+  "copyright": "Copyright © 2025 Chixirra",
+
+  "asar": true,
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [".output/**/*", "electron", "!**/node_modules"],
+  "mac": {
+    "target": ["dmg", "zip"],
+    "artifactName": "${productName}-${version}-mac-${arch}.${ext}",
+    "category": "public.app-category.entertainment",
+    "icon": "build/icons/icon.icns"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64", "ia32"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64", "x32"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64", "ia32"]
+      }
+    ],
+    "artifactName": "${productName}-${version}-win-${arch}.${ext}",
+    "icon": "build/icons/icon.ico"
+  },
+  "linux": {
+    "target": ["AppImage", "deb", "rpm", "tar.gz"],
+    "icon": "build/icons/icon.png",
+    "artifactName": "${productName}-${version}-linux-${arch}.${ext}",
+    "category": "Entertainment",
+    "maintainer": "https://github.com/chixirra/yukae",
+    "synopsis": "An anime, manga and novel tracking app"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}

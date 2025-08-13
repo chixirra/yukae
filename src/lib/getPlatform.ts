@@ -3,21 +3,14 @@
  * @returns {'desktop' | 'mobile' | 'web'}
  */
 export function getPlatform(): "desktop" | "mobile" | "website" {
-  //   process.env.BUILD_TARGET as "desktop" | "mobile" | "website";
+  // Electron (renderer or preload with contextIsolation)
+  const isElectron =
+    typeof navigator === "object" &&
+    navigator.userAgent.toLowerCase().includes("electron");
 
-  // check for electron (desktop)
-  if (
-    (typeof window !== "undefined" &&
-      typeof window.process === "object" &&
-      (window.process as any).type === "renderer") ||
-    (typeof process !== "undefined" &&
-      typeof process.versions === "object" &&
-      !!(process.versions as any).electron)
-  ) {
-    return "desktop";
-  }
+  if (isElectron) return "desktop";
 
-  // check for capacitor (mobile)
+  // Capacitor (mobile)
   if (
     typeof window !== "undefined" &&
     typeof (window as any).Capacitor !== "undefined"
@@ -25,6 +18,5 @@ export function getPlatform(): "desktop" | "mobile" | "website" {
     return "mobile";
   }
 
-  // if none, then return default value as web
   return "website";
 }
