@@ -7,17 +7,12 @@ export function getPlatform(): "desktop" | "mobile" | "website" {
 
   // check for electron (desktop)
   if (
-    typeof window !== "undefined" &&
-    typeof window.process === "object" &&
-    (window.process as any).type === "renderer"
-  ) {
-    return "desktop";
-  }
-
-  if (
-    typeof process !== "undefined" &&
-    typeof process.versions === "object" &&
-    !!(process.versions as any).electron
+    (typeof window !== "undefined" &&
+      typeof window.process === "object" &&
+      (window.process as any).type === "renderer") ||
+    (typeof process !== "undefined" &&
+      typeof process.versions === "object" &&
+      !!(process.versions as any).electron)
   ) {
     return "desktop";
   }
